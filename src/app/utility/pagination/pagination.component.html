@@ -1,0 +1,33 @@
+<div class="pagination">
+  <!-- Previous page button -->
+  <button
+    data-testId="pagination-previous-button"
+    class="pagination-button"
+    [disabled]="currentPage === 1"
+    (click)="onPreviousPage()"
+  >
+    Previous
+  </button>
+
+  <!-- Page numbers -->
+  <form [formGroup]="pageForm">
+    <select
+      formControlName="selectedPage"
+      (change)="onPageChange()"
+      class="page-select"
+      data-testId="pagination-current-page-dropdown"
+    >
+      <option *ngFor="let page of pagesArray" [value]="page">{{ page }}</option>
+    </select>
+  </form>
+
+  <!-- Next page button -->
+  <button
+    data-testId="pagination-next-button"
+    class="pagination-button"
+    [disabled]="currentPage === totalPages"
+    (click)="onNextPage()"
+  >
+    Next
+  </button>
+</div>

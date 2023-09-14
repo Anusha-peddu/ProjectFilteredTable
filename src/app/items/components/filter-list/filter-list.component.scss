@@ -1,0 +1,36 @@
+/* Applied Filter Container */
+.applied-filter {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 5px;
+  width: fit-content;
+}
+
+/* Applied Filter Label */
+.applied-filter-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* Applied Filter Cancel Button */
+.cancel-button {
+  background-color: transparent;
+  border: none;
+  color: #ff0000;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 5px;
+  font-weight: bolder;
+}
+
+/* Hover effect for cancel button */
+.cancel-button:hover {
+  text-decoration: underline;
+}
+.filters {
+  display: flex;
+}

@@ -1,0 +1,78 @@
+<div class="sidebar" data-testId="filter-sidebar">
+  <form [formGroup]="filterForm" class="form-container">
+    <!-- Column Name -->
+    <div class="form-group" data-testId="column-name-selection">
+      <label for="columnName">Column Name</label>
+      <select
+        formControlName="columnName"
+        id="columnName"
+        (change)="onColumnNameOptionChange()"
+      >
+        <!-- Populate this dropdown with column names dynamically -->
+        <option *ngFor="let column of columns" [ngValue]="column">
+          {{ column }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Operator -->
+
+    <div class="form-group" data-testId="operator-selection">
+      <label for="operator">Operator</label>
+      <select formControlName="operator" id="operator">
+        <option
+          *ngFor="let operator of availableOperators"
+          [ngValue]="operator"
+        >
+          {{ operator }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Value -->
+    <div
+      class="form-group"
+      *ngIf="selectedOptionType"
+      data-testId="value-field"
+    >
+      <label for="value">Value</label>
+      <input
+        data-testId="value-text-field"
+        type="text"
+        formControlName="value"
+        id="value"
+        *ngIf="selectedOptionType === 'string'"
+      />
+
+      <input
+        data-testId="value-number-field"
+        type="number"
+        formControlName="value"
+        id="value"
+        *ngIf="selectedOptionType === 'number'"
+      />
+    </div>
+
+    <!-- Form Buttons: Submit and Reset -->
+    <div class="form-buttons">
+      <!-- Submit -->
+      <button
+        data-testId="apply-filter"
+        class="filter-button"
+        [disabled]="!filterForm.valid"
+        (click)="onAddFilter()"
+      >
+        Apply Filter
+      </button>
+
+      <!-- Reset -->
+      <button
+        data-testId="cancel-filter"
+        class="filter-button"
+        (click)="onClearFilter()"
+      >
+        Clear Filter
+      </button>
+    </div>
+  </form>
+</div>

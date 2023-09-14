@@ -1,0 +1,67 @@
+<app-loader *ngIf="isLoading"></app-loader>
+
+<div class="container" data-testId="items-continer" *ngIf="!isLoading">
+  <!-- Filter Side Bar -->
+
+  <div
+    data-testId="filter-side-bar"
+    [ngClass]="
+      isFilterVisible ? 'side-filter-visible' : 'side-filter-not-visible'
+    "
+  >
+    <app-filter-sidebar
+      [columns]="columns"
+      [columnDataTypes]="columnDataTypes"
+      (filterApplied)="onAddNewFilter($event)"
+    ></app-filter-sidebar>
+  </div>
+
+  <!--Table With Filters-->
+  <div class="content">
+    <!-- Toggle Filter side Bar-->
+    <div
+      [ngClass]="!isFilterVisible ? 'full-width' : 'not-full-width'"
+      class="head-section"
+    >
+      <button
+        data-testId="filter-toggle-button"
+        (click)="onToggleFilterSection()"
+        class="filter-toggle-button"
+      >
+        Filters
+      </button>
+
+      <span>Total Records: {{ totalItems }}</span>
+      <!-- Pagination controls -->
+      <app-pagination
+        data-testId="pagination"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        [totalItems]="totalItems"
+        (pageChange)="onPageChange($event)"
+      ></app-pagination>
+    </div>
+
+    <!--Filter List-->
+    <div
+      data-testId="filter-list"
+      [ngClass]="!isFilterVisible ? 'full-width' : 'not-full-width'"
+    >
+      <app-filter-list
+        [appliedFilters]="appliedFilters"
+        (filterCancelled)="onCancelFilter($event)"
+      >
+      </app-filter-list>
+    </div>
+    <div
+      data-testId="filter-table-data"
+      [ngClass]="!isFilterVisible ? 'full-width' : 'not-full-width'"
+    >
+      <!--Filtered Data Table -->
+      <app-data-table
+        [tableData]="tableData"
+        [columns]="columns"
+      ></app-data-table>
+    </div>
+  </div>
+</div>

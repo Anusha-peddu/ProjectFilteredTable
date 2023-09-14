@@ -1,0 +1,18 @@
+<div class="filters" data-testId="applied-filters-list">
+  <div
+    *ngFor="let filter of appliedFilters; let i = index"
+    class="applied-filter"
+    attr.data-testId="applied-filters-{{ i }}"
+  >
+    <span
+      >{{ filter.columnName }} {{ filter.operator }} {{ filter.value }}</span
+    >
+    <button
+      (click)="onCancelFilter(filter)"
+      class="cancel-button"
+      attr.data-testId="applied-filter-cancel-{{ i }}"
+    >
+      X
+    </button>
+  </div>
+</div>

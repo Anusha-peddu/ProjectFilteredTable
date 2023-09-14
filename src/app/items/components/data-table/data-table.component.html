@@ -1,0 +1,29 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <!-- Table Header Columns -->
+      <tr data-testId="item-list-header">
+        <th
+          *ngFor="let column of columns; let headerIndex = index"
+          attr.data-testId="item-list-column-{{ headerIndex }}"
+        >
+          {{ column }}
+        </th>
+      </tr>
+    </thead>
+    <tbody data-testId="item-list-values">
+      <!-- Display Table item row values -->
+      <tr
+        *ngFor="let item of tableData; let rowIndex = index"
+        attr.data-testId="item-list-{{ rowIndex }}"
+      >
+        <td
+          *ngFor="let column of columns; let i = index"
+          attr.data-testId="item-list-data-{{ i }}"
+        >
+          {{ item[column] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
